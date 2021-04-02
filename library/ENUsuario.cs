@@ -57,11 +57,13 @@
         }
         public bool updateUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.updateUsuario(this);
         }
         public bool deleteUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.deleteUsuario(this);
         }
     }
 }

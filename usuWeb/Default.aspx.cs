@@ -56,12 +56,20 @@ namespace usuWeb
 
         protected void Update(object sender, EventArgs e)
         {
-
+            ENUsuario en = new ENUsuario(nifTextBox.Text, nombreTextBox.Text, Int32.Parse(edadTextBox.Text));
+            if (en.updateUsuario())
+                Label1.Text = "Success";
+            else
+                Label1.Text = "Failed";
         }
 
         protected void Delete(object sender, EventArgs e)
         {
-
+            ENUsuario en = new ENUsuario(nifTextBox.Text, nombreTextBox.Text, Int32.Parse(edadTextBox.Text));
+            if (en.deleteUsuario())
+                Label1.Text = "Success";
+            else
+                Label1.Text = "Failed";
         }
     }
 }

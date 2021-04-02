@@ -198,11 +198,61 @@ namespace library
         }
         public bool updateUsuario(ENUsuario en)
         {
-            return false;
+            bool ret = true;
+            SqlConnection c = new SqlConnection(constring);
+            try
+            {
+                c.Open();
+                SqlCommand com = new SqlCommand("Update Usuarios set " +
+                    "nombre='" + en.nombreUsuario + "', " +
+                    "edad='" + en.edadUsuario + "' " +
+                    "where nif='" + en.nifUsuario + "'", c);
+                int affected = com.ExecuteNonQuery();
+                if (affected == 0)
+                {
+                    ret = false;
+                    Console.WriteLine("User operation has failed. No hay usuarios con el nif indicado para actualizar.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                ret = false;
+            }
+            finally
+            {
+                c.Close();
+            }
+            return ret;
         }
         public bool deleteUsuario(ENUsuario en)
         {
-            return false;
+            bool ret = true;
+            SqlConnection c = new SqlConnection(constring);
+            try
+            {
+                c.Open();
+                SqlCommand com = new SqlCommand("DELETE FROM Usuarios WHERE " +
+                    "nif='" + en.nifUsuario + "' AND " +
+                    "nombre='" + en.nombreUsuario + "' AND " +
+                    "edad='" + en.edadUsuario + "' ", c);
+                int affected = com.ExecuteNonQuery();
+                if (affected == 0)
+                {
+                    ret = false;
+                    Console.WriteLine("User operation has failed. No hay usuarios con los datos indicados para actualizar.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("User operation has failed. Error: {0}", ex.Message);
+                ret = false;
+            }
+            finally
+            {
+                c.Close();
+            }
+            return ret;
         }
     }
 }
