@@ -65,5 +65,10 @@
             CADUsuario cad = new CADUsuario();
             return cad.deleteUsuario(this);
         }
+
+        public override string ToString()
+        {
+            return "(nif: " + nifUsuario + ", nombre: " + nombreUsuario + ", edad: " + edadUsuario + ")";
+        }
     }
 }

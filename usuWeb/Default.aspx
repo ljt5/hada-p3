@@ -31,4 +31,7 @@
     <p>
         <asp:Label id="Label1" runat="server" />
     </p>
+    <p>
+        <asp:Label id="LabelUser" runat="server" />
+    </p>
 </asp:Content>

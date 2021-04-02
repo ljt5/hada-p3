@@ -43,13 +43,14 @@ namespace library
             {
                 c.Open();
                 SqlCommand com = new SqlCommand("Select * from Usuarios " +
-                    "where nif='" + en.nifUsuario +
-                    "' and nombre='" + en.nombreUsuario +
-                    "' and edad='" + en.edadUsuario + "'", c);
+                    "where nif='" + en.nifUsuario + "'", c);
                 SqlDataReader dr = com.ExecuteReader();
                 if (dr.Read())
                 {
                     ret = true;
+                    en.nifUsuario = dr["nif"].ToString();
+                    en.nombreUsuario = dr["nombre"].ToString();
+                    en.edadUsuario = Int32.Parse(dr["edad"].ToString());
                 }
                 else
                 {
@@ -116,9 +117,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    if (en.nifUsuario == dr["nif"].ToString() &&
-                        en.nombreUsuario == dr["nombre"].ToString() &&
-                        en.edadUsuario == Int32.Parse(dr["edad"].ToString()))
+                    if (en.nifUsuario == dr["nif"].ToString())
                     {
                         if (dr.Read())
                         {
@@ -160,9 +159,7 @@ namespace library
                 SqlDataReader dr = com.ExecuteReader();
                 while (dr.Read())
                 {
-                    if (en.nifUsuario == dr["nif"].ToString() &&
-                        en.nombreUsuario == dr["nombre"].ToString() &&
-                        en.edadUsuario == Int32.Parse(dr["edad"].ToString()))
+                    if (en.nifUsuario == dr["nif"].ToString())
                     {
                         if (prevUser == null)
                         {
@@ -171,9 +168,9 @@ namespace library
                         else
                         {
                             ret = true;
-                            en.nifUsuario = dr["nif"].ToString();
-                            en.nombreUsuario = dr["nombre"].ToString();
-                            en.edadUsuario = Int32.Parse(dr["edad"].ToString());
+                            en.nifUsuario = prevUser.nifUsuario;
+                            en.nombreUsuario = prevUser.nombreUsuario;
+                            en.edadUsuario = prevUser.edadUsuario;
                         }
                         break;
                     }
@@ -233,9 +230,7 @@ namespace library
             {
                 c.Open();
                 SqlCommand com = new SqlCommand("DELETE FROM Usuarios WHERE " +
-                    "nif='" + en.nifUsuario + "' AND " +
-                    "nombre='" + en.nombreUsuario + "' AND " +
-                    "edad='" + en.edadUsuario + "' ", c);
+                    "nif='" + en.nifUsuario + "' ", c);
                 int affected = com.ExecuteNonQuery();
                 if (affected == 0)
                 {
