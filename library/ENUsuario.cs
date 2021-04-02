@@ -1,42 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace library
+﻿namespace library
 {
     public class ENUsuario
     {
         private string nif;
         private string nombre;
         private int edad;
+        public string nifUsuario
+        {
+            get => nif;
+            set => nif = value;
+        }
+        public string nombreUsuario
+        {
+            get => nombre;
+            set => nombre = value;
+        }
+        public int edadUsuario
+        {
+            get => edad;
+            set => edad = value;
+        }
 
         public ENUsuario()
         {
         }
         public ENUsuario(string nif, string nombre, int edad)
         {
+            this.nif = nif;
+            this.nombre = nombre;
+            this.edad = edad;
         }
         public bool createUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.createUsuario(this);
         }
         public bool readUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.readUsuario(this);
         }
         public bool readFirstUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.readFirstUsuario(this);
         }
         public bool readNextUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.readNextUsuario(this);
         }
         public bool readPrevUsuario()
         {
-            return false;
+            CADUsuario cad = new CADUsuario();
+            return cad.readPrevUsuario(this);
         }
         public bool updateUsuario()
         {
